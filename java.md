@@ -1,6 +1,6 @@
 # Java
 
-## 1.初步
+## 一.初步
 
 ### sublime的使用
 
@@ -51,9 +51,9 @@
 
 2. 在文件管理器的地址栏输入`cmd`即可进入控制台
 
-3. `javac hello.java`编译生成class文件
+3. `javac hello.java`==编译==生成class文件
 
-4. `java hello`*注意：不用写成hello.class*
+4. `java hello`==运行==*注意：不用写成hello.class*
 
    ![image-20221212203509199](C:\Users\王沛然\AppData\Roaming\Typora\typora-user-images\image-20221212203509199.png)
 
@@ -185,7 +185,7 @@ if (i > 0)
 
 
 
-## 变量
+## 二. 变量
 
 ### 变量类型
 
@@ -231,18 +231,19 @@ String d = "king";
           float num2 = 1.1f;	//right
           double num3 = 1.1;	//right
           double num4 = 1.1f;	//right
+          double num5 = 4d;	//right
           ```
-
+        
         + 表示形式
-
+        
           ​	十进制 0.15=.15
-
+        
           ​	科学计数法 5.12e-2
-
+        
         + 通常用double
-
+        
         + ==浮点数计算的**陷阱**==
-
+        
           ```java
           //不要对运算后的小数进行比较
           double num1 = 2.7;
@@ -252,20 +253,20 @@ String d = "king";
               
           }
           ```
-
+        
           ***正确比较运算后的小数：判断两个数的差值的绝对值，在某个范围内***
-
+        
         | 类型  | 存储空间（字节） |                  |
         | :---: | :--------------: | :--------------: |
         | byte  |        1         |    -128 ~ 127    |
         | short |        2         |  -32768 ~ 32767  |
         |  int  |        4         | -2^31^ ~ 2^31^-1 |
         | long  |        8         | -2^63^ ~ 2^63^-1 |
-
+   
    2. 字符型
-
+   
       + `char[2]`
-
+   
          ```java
          char c1 = 'a';
          char c2 = '\t';
@@ -274,11 +275,11 @@ String d = "king";
          
          System.out.println((int)c1);//输出97
          ```
-
+   
       + 用单引号`''`引用
-
+   
       + 默认输出时，是Unicode码对应的字符
-
+   
       + ASCII一个字节，128个字符，但一个字节可以有256个字符
 
 
@@ -297,7 +298,7 @@ String d = "king";
    
    
 
-3. 数据类型**自动**转换
+5. 数据类型**自动**转换
 
    + ==低精度**自动**转换为高精度的== **记忆**
 
@@ -321,11 +322,18 @@ String d = "king";
 
    + ==byte，short，char可以参与计算（单独或混合），一旦计算，**精度都提升到int**==
 
+     ```java
+     int i = 4;
+     char ch = 1 + i;//int->char
+     ```
+
+     
+
    + Boolean不参与运算
 
      
 
-4. **强制**类型转换
+6. **强制**类型转换
 
    `(int) (char) `
 
@@ -340,7 +348,7 @@ String d = "king";
 
      
 
-5. 基本数据类型->String
+5. *基本数据类型->String  
 
    语法：`数据类型变量+""`
 
@@ -349,16 +357,20 @@ String d = "king";
    float n2 = 1.1f;
    double n3 = 23.5;
    boolean b1 = false;
+   char c1 = '嗨';
    String str1 = n1 + "";
    String str2 = n2 + "";
    String str3 = n3 + "";
    String str4 = b1 + "";
+   String str5 = c1 + "";
    ```
 
 
 
-6. String->转换为基本数据类型
+6. *String->转换为基本数据类型 **特殊：不能用上面的强转！！！要用相应的包装类**
 
+   要确保可以转换，否则程序异常，中止
+   
    ```java
    String s1 = "123";
    //OOP面向对象，对应的包装类的相应方法
@@ -368,7 +380,11 @@ String d = "king";
    //String->char
    System.out.println(s1.charAt(0));//得到s1的第1个字符
    ```
-
+   
+   
+   
+   ##### 数据类型作业homework_char, homework_char01
+   
    
 
 ### Java API
@@ -377,7 +393,7 @@ String d = "king";
 
    [中文文档](https://www.matools.com/)
 
-<img src="C:\Users\王沛然\Desktop\JAVA\索引结构.png" alt="索引结构" style="zoom:80%;" />
+<img src=".\索引结构.png" alt="索引结构" style="zoom:80%;" />
 
 ### 编码方式
 
@@ -390,3 +406,229 @@ UTF-8：（可变大小）字母用一个字节，汉字用三个字节
 GBK：字母用一个字节，汉字用2个字节
 
 BIG-5：繁体
+
+----
+
+----
+
+
+
+## 三. 运算符
+
+### / 除法
+
+```java 
+System.out.println(10 / 4);//2 int/int=int
+System.out.println(10.0 / 4);//2.5 double/int=double
+double d = 10 / 4;//2.0
+```
+
+### %模
+
+`a % b = a - a / b * b`
+
+### ++自增
+
++ 独立语句时`i++`等于`++i`
+
++ `i++`先赋值再增加
++ **有趣的现象**   ++运算符的优先级高于=
+
+``` java
+int i = 1;
+i = i++; //1)temp=i; 2) i=i+1; 3)i=temp
+//i? 1
+
+int i = 1;
+i = ++i; //1)i=i+1; 2) temp=i; 3)i=temp
+//i? 2
+```
+
+### 关系运算符
+
+`instanceof`
+
+返回布尔类型`true false`
+
+### 逻辑运算符
+
+1. a&b逻辑与
+
+2. a&&b短路与
+
+   ```java
+   int a = 4;
+   int b = 10;
+   if(a < 1 && ++b < 50) {
+       System.out.println("ok300");
+   }
+   System.out.println("a=" + a + "b=" + b);
+   //b = 10
+   //短路与：第一个条件为FALSE时，第二个条件不再判断，效率高
+   //逻辑与：第一个条件为FALSE时，第二个条件仍然判断
+   //===========================================
+   int a = 4;
+   int b = 10;
+   if(a < 1 & ++b < 50) {
+       System.out.println("ok300");
+   }
+   System.out.println("a=" + a + "b=" + b);
+   //b = 11
+   //短路与：第一个条件为FALSE时，第二个条件不再判断
+   //逻辑与：第一个条件为FALSE时，第二个条件仍然判断
+   
+   ```
+
+   
+
+3. a|b
+
+4. a||b短路或
+
+   ```java
+   int a = 4;
+   int b = 10;
+   if(a < 5 || ++b < 50) {
+       System.out.println("ok300");
+   }
+   System.out.println("a=" + a + "b=" + b);
+   //b = 10
+   //短路或：第一个条件为TRUE时，第二个条件不再判断，效率高
+   //逻辑或：第一个条件为TRUE，第二个条件仍然判断
+   ```
+
+   
+
+5. !a
+
+6. a^b异或
+
+
+
+```java
+//practice
+boolean x = true;
+boolean y = false;
+short z = 46;
+if((z++ == 46) && (y = true)) z++; //T 47 48
+if((x = false) || (++z = 49)) z++; //49 T 50
+System.out.println("z=" + z);
+
+```
+
+### 赋值运算符
+
++ 基本 `=`
++ 复合`a += b` <=>`a = a + b `         `a -= b`<=>`a = a - b`
+
++  运算顺序 从 右往左
+
++ 复合赋值运算会**自动**进行类型转换
+
+  ```java 
+  byte b = 3;
+  b += 2; //等价 b = (byte)(b + 2);
+  b++; // b = (byte)(b + 1);
+  //若写成
+  b = b + 2;//报错int ->byte
+  ```
+
+  
+
+### 三元运算符
+
++ `条件表达式?表达式1:表达式2;`表达式为TRUE，结果表达式为1，**表达式2不会执行*
++ 可以改写成if else语句
+
+### 运算优先级
+
+
+
+### 标识符规则与规范
+
++ 规则
+  + 英文字母，0-9，_ $
+  + 数字不开头
+  + 不使用关键字和保留字
+  + 区分大小写
+  + 不能空格
++ 规范
+  + 包名：aaa.bbb.ccc所有字母小写
+  + 类名、接口名：XxxYyyZzz[大驼峰]，第一个单词大写
+  + 变量名、方法名：xxxYyyZzz[小驼峰]
+  + 常量名XXX_YYY_ZZZ
+
+### 输入(扫描器)
+
+```java
+import java.util.Scanner; //表示把java.util下的Scanner类导入
+public class Input {
+
+	public static void main(String[] args) {
+
+		//Scanner类，表示简单文本扫描器，在java.until包
+		//1. import Scanner类所在的包
+		//2.创建Scanner对象，new创建一个对象
+		// myScanner是Scanner类的对象
+		Scanner myScanner = new Scanner(System.in);//从键盘输入
+		System.out.println("请输入名字");
+		String name = myScanner.next();
+		System.out.println("请输入年龄");
+		int age = myScanner.nextInt();
+		System.out.println("请输如薪水");
+		double salary = myScanner.nextDouble();
+		System.out.println(name + age + salary);
+	}
+}
+```
+
+### 进制转换
+
++ 2 8 16进制转换为十进制
+
+  加权求和
+
++ 十进制转2 8 16
+
+  短除法，得余数，倒着写出
+
++ 2 -> 8 16  
+
+  取三位、四位
+
++ 8 16 -> 2
+
+
+
++ `>>`算数右移，用符号位补溢出高位 === *相当于/2*
+
++ `<<`符号位不变，用0补低位 === *相当于`*`2*
+
++ `>>>`无符号右移 低位溢出，高位补0
+
++ 没有`<<<`
+
+  
+
++ `~`按位取反，`& | ^`
+
+> 源码反码补码
+>
+> + 最高位：0正1负
+> + 正数三码合一
+> + 负数反码=符号位不变，其他位反转
+> + 负数补码=反码+1 ; *反推*反码=补码-1，负数符号位不变，其他位反转
+> + java*没有*无符号数，都是有符号的
+> + 所有运算时，用**补码**
+> + 当看到结果的时候，要看原码
+
+```java
+//1.先得到补码 2的原码 => 000000000 00000000 00000000 00000010
+//2.2的补码 => 000000000 00000000 00000000 00000010
+System.out.println(2 & 3);
+
+//-2的原码 => 100000000 00000000 00000000 00000010
+System.out.println(~-2);
+```
+
+？
